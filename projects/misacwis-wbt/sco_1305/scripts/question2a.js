@@ -1,0 +1,1 @@
+xp.pageConfig = {"correctAnswer":["option-b","option-c"],"feedback":{"correct":"That's right! The correct answers are indicated above.","tryAgain":"lorem ipsum dolor","incorrect":"Sorry,&nbsp;your answers aren't quite&nbsp;right. The correct answers are indicated above."},"audio":[]};

@@ -1,0 +1,12 @@
+/*
+	All skin customizations should go in this file.
+
+	The master.css and templates.css should never be touched. These files should
+	be identical across all codesets in XP-23. They provide a base.
+*/
+
+header h1 {background-image:url(images/banner.png);}
+
+@media only screen and (max-width: 600px) {
+	header h1 {background-image:url(images/banner-phone.jpg);}
+}
