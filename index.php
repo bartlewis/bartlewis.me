@@ -1,16 +1,6 @@
 <?php
-/* Todo
- *
- * 1) aria props?
- * 2) would be nice to have a little arrow point left or right from social tooltip
- * 3) back to top links?
- * 4) META stuff for SEO
- * 5) Google Analytics
- */
-
 require_once('common.php');
 require_once('vendor/twitteroauth/twitteroauth.php');
-require_once('vendor/phpFlickr.php');
 
 // Get and cache recent tweets
 if (!file_exists(TWITTER_CACHE_FILE) || filemtime(TWITTER_CACHE_FILE)<strtotime(TWITTER_CACHE_TIME)){
@@ -31,24 +21,11 @@ if (!file_exists(TWITTER_CACHE_FILE) || filemtime(TWITTER_CACHE_FILE)<strtotime(
 			)
 	);
 
-	//$tweets = @file_get_contents('http://api.twitter.com/1/statuses/user_timeline/bart_lewis.json');
 	file_put_contents(TWITTER_CACHE_FILE, json_encode($tweets));
 }
 else{
 	$tweets = json_decode(file_get_contents(TWITTER_CACHE_FILE));
 }
-
-
-// Get and cache recent Flickr photos
-// $flickr = new phpFlickr(FLICKR_KEY);
-// if (!file_exists(FLICKR_CACHE_FILE) || filemtime(FLICKR_CACHE_FILE)<strtotime(FLICKR_CACHE_TIME)){
-// 	$flickrPhotos = serialize($flickr->people_getPublicPhotos(FLICKR_USER_ID, null, null, 6));
-// 	file_put_contents(FLICKR_CACHE_FILE, $flickrPhotos);
-// }
-// else{
-// 	$flickrPhotos = file_get_contents(FLICKR_CACHE_FILE);
-// }
-// $flickrPhotos = unserialize($flickrPhotos);
 
 ?>
 <!DOCTYPE html>
@@ -74,7 +51,7 @@ else{
 
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-29005625-1']);
+			_gaq.push(['_setAccount', '<?php echo GOOGLE_ANALYTICS_ID ?>']);
 			_gaq.push(['_trackPageview']);
 
 			(function() {
@@ -107,10 +84,10 @@ else{
 				<h3>Hi! My name is Bart.</h3>
 				<img src="images/headshot.jpg" alt="Bart's Headshot" >
 				<p>
-					Professionally, I've been developing web sites and web applications of all shapes and sizes for over a decade. During this time, I've done both front end and back end development. Most of my back end experience revolves around PHP and MySQL (and a little Node.js more recently). Lately however, the front end development is getting a lot of my attention. I've been really interested in getting deeper into HTML5, CSS3, and JavaScript (jQuery, Backbone.js, Angular, Require.js, and etc). More than half of my career has been as a remote worker, out of a home office.
+					Professionally, I've been developing web sites and web applications of all shapes and sizes for over a decade. During this time, I've done both front end and back end development. Most of my back end experience revolves around PHP and MySQL. Lately however, the front end development is getting a lot of my attention (JavaScipt FTW). More than half of my career has been as a remote worker, out of a home office.
 				</p>
 				<p>
-					I have been married to my wife, <a href="http://www.twitter.com/heathrlewis">Heather</a>, for thirteen years. Together, we have three gorgeous little girls (not at all biased or anything). We currently live in Southern California.
+					I have been married to my wife, <a href="http://www.twitter.com/heathrlewis">Heather</a>, for sixteen years. Together, we have three gorgeous little girls (not at all biased or anything). We currently live in Southern California.
 				</p>
 				<p>
 					In my free time, I enjoy hiking, reading, board games and video games. As a kid, I wasn't a huge reader, but lately I have become more and more enthralled with reading. As a by-product of reading, I've also become increasingly interested in personal finance.
@@ -125,17 +102,6 @@ else{
 					?>
 					<br><a href="http://twitter.com/bart_lewis" class="twit">@bart_lewis</a>
 				</span>
-<!-- 				<div class="flickr">
-					<?php
-						// $html = '';
-						// foreach($flickrPhotos['photos']['photo'] as $photo){
-						// 	$html .= '<a href="http://www.flickr.com/photos/'.$photo['owner'].'/'.$photo['id'].'">';
-						// 	$html .= '<img src="'.$flickr->buildPhotoURL($photo, 'small').'" alt="'.$photo['title'].'" >';
-						// 	$html .= '</a>';
-						// }
-						// echo $html;
-					?>
-				</div> -->
 			</div>
 			<div class="rip"><!-- How to do this without any extra markup? --></div>
 		</section>
@@ -148,19 +114,28 @@ else{
 				</p>
 				<ul class="links">
 					<li><a href="http://www.linkedin.com/in/bartlewis" class="big-button">LinkedIn Profile</a></li>
-					<li><a href="http://careers.stackoverflow.com/cv/publish/20162" class="big-button">StackOverflow Careers Profile</a></li>
+					<li><a href="http://careers.stackoverflow.com/bartlewis" class="big-button">StackOverflow Careers Profile</a></li>
 				</ul>
 				<h4>Specialties</h4>
 				<ul>
 					<li>HTML5</li>
 					<li>CSS3</li>
-					<li>JavaScript</li>
+					<li>
+            JavaScript
+            <ul>
+              <li>jQuery</li>
+              <li>Backbone</li>
+              <li>Require</li>
+              <li>Angular</li>
+            </ul>
+          </li>
 					<li>MySQL</li>
 					<li>PHP</li>
+          <li>Objective-C</li>
 				</ul>
 				<h4>Experience</h4>
 				<p>
-					In 1996, I attended a one year technical program entitled "Multimedia Production". Immediately following this, I started developing CBT (computer based training) for delivery on CD-ROM. In 2000, I transitioned from developing programs for CD-ROMs, to developing for the Web. Since then, I've been heavily involved in web development. At times I focused specifically on back end development, and at other times front end development. Lately, it is more front end, but I still enjoy both.
+					I've been building software of one form or another my whole life. Most of this development experience has been in web development. At times I focused specifically on back end development, and at other times front end development. Lately, it is more front end, but I still enjoy both.
 				</p>
 			</div>
 		</section>
@@ -169,7 +144,34 @@ else{
 			<div class="content">
 				<h3 id="projects-header">Projects</h3>
 
-				<section aria-expanded="true">
+        <section aria-expanded="true">
+          <header>
+            <h4>Pegg</h4>
+            <ul>
+              <li>Objective-C</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+            </ul>
+          </header>
+          <div>
+            <img src="images/projects/thumbs/pegg.jpg" width="260" height="140" alt="Pegg thumbnail">
+            <p>
+              Pegg is the iPhone app version of PeggSite (see next project). In 2014, we decided to scrap the
+              website, and double down on the iPhone app. This required me to quickly get up to speed with
+              Objective-C. During this time, I mentored under a seasoned iPhone developer that we brought on to
+              the project.
+            </p>
+            <dl>
+              <dt>When</dt>
+              <dd>2015</dd>
+
+              <dt>Where</dt>
+              <dd><a href="https://pegg.co/">pegg.co</a></dd>
+            </dl>
+          </div>
+        </section>
+
+				<section aria-expanded="true" class="collapsed">
 					<header>
 						<h4>PeggSite</h4>
 	 					<ul>
@@ -183,17 +185,17 @@ else{
 					<div>
 						<img src="images/projects/thumbs/peggsite.jpg" width="260" height="140" alt="PeggSite thumbnail">
 						<p>
-							PeggSite is a one-page, rich-media platform that falls between endless feeds and static websites.
+							PeggSite was a one-page, rich-media platform that falls between endless feeds and static websites.
 							I founded PeggSite with my good friend, <a href="http://twitter.com/kirklove">Kirk Love</a>.
-							The idea for PeggSite, and the design, is all Kirk. The code (front end and back) is all me.
-							PeggSite is a side project [for me], and is coming to life bit by bit (or feature by feature if you prefer).
+							The idea for PeggSite, and the design, was all Kirk. The code (front end and back) was all me. PeggSite
+              was built with PHP and MySQL on the back end, and Backbone/Require.js on the front end.
 						</p>
+            <p>
+              This site has since been replaced with a simple landing page for the <a href="https://pegg.co">iPhone app</a>.
+            </p>
 						<dl>
 							<dt>When</dt>
 							<dd>2013</dd>
-
-							<dt>Where</dt>
-							<dd><a href="http://www.peggsite.com/">www.peggsite.com</a></dd>
 						</dl>
 					</div>
 				</section>
@@ -237,16 +239,17 @@ else{
 						<img src="images/projects/thumbs/misacwis-wbt.jpg" width="260" height="140" alt="Michigan SACWIS WBT thumbnail">
 						<p>
 							This is one of many Web-Based Training (WBT) products I helped to create, while at DRC.
-							This particular WBT sample was created for the State of Michigan. It uses responsive web design,
-							and "progressive enhancement" to make sure it is consumable by the broadest range of users. I did
-							100% of the front end code (HTML, CSS, JavaScript) on this one.
+							This particular WBT sample was created for the State of Michigan. It was designed to play
+              extremely well with Section 508 and accessibility standards, and falls back gracefully,
+              in the absence of JavaScript. I did 100% of the front end code (HTML, CSS, JavaScript)
+              on this one. I did not do the design.
 						</p>
 						<dl>
 							<dt>When</dt>
 							<dd>2011</dd>
 
 							<dt>Where</dt>
-							<dd><a href="projects/misacwis-wbt/sco_1305/">Local</a></dd>
+							<dd><a href="projects/misacwis-wbt/sco_1305/">projects/misacwis-wbt/sco_1305/</a></dd>
 						</dl>
 					</div>
 				</section>
@@ -269,9 +272,6 @@ else{
 						<dl>
 							<dt>When</dt>
 							<dd>2011</dd>
-
-							<dt>Where</dt>
-							<dd><a href="http://itunes.apple.com/us/app/gabby-gourmet-guide/id420954367?mt=8">iTunes</a></dd>
 						</dl>
 					</div>
 				</section>
@@ -290,14 +290,12 @@ else{
 						<img src="images/projects/thumbs/dt-landscape.jpg" width="260" height="140" alt="DT Landscape thumbnail">
 						<p>
 							This is a website I built for a local contractor. I did all of the design, code (HTML, CSS, JavaScript, PHP), and even took most of the pictures.
-							The gallery was all done as an integration with their Facebook page. This allows them to upload new photos and create new categories at will.
+							The gallery was all done as an integration with their Facebook page. This allowed them to upload new photos and create new categories at will
+              within Facebook, and have those changes immediately reflected on their site.
 						</p>
 						<dl>
 							<dt>When</dt>
 							<dd>2009</dd>
-
-							<dt>Where</dt>
-							<dd><a href="http://www.dtlandscape.com/">www.dtlandscape.com</a></dd>
 						</dl>
 					</div>
 				</section>
@@ -314,14 +312,11 @@ else{
 					<div>
 						<img src="images/projects/thumbs/doing-what-works.jpg" width="260" height="140" alt="Doing What Works thumbnail">
 						<p>
-							This website was built by Little Planet Learning, for the U.S. Department of Education. I worked with Little Planet to help with the initial front end development. I turned their PSD designs into HTML / CSS templates, and their Back End developers took it from there.
+							This website was built by Little Planet Learning, for the U.S. Department of Education. I worked with Little Planet to help with the initial front end development. I turned their PSD designs into HTML / CSS templates, and their back end developers took it from there.
 						</p>
 						<dl>
 							<dt>When</dt>
 							<dd>2009</dd>
-
-							<dt>Where</dt>
-							<dd><a href="http://dww.ed.gov/">dww.ed.gov</a></dd>
 						</dl>
 					</div>
 				</section>
@@ -416,13 +411,11 @@ else{
 					<li class="linkedin"><a href="http://www.linkedin.com/in/bartlewis">LinkedIn</a></li>
 					<li class="twitter"><a href="http://twitter.com/bart_lewis">Twitter</a></li>
 					<li class="facebook"><a href="http://www.facebook.com/bartonlewis">Facebook</a></li>
-					<li class="peggsite"><a href="http://peggsite.com/bart">PeggSite</a></li>
 					<li class="stackoverflow"><a href="http://stackoverflow.com/users/158651/bart">StackOverflow</a></li>
 					<li class="github"><a href="https://github.com/bartlewis">Github</a></li>
 				</ul>
 				<ul class="list-b">
 					<li class="fitbit"><a href="http://www.fitbit.com/user/226WHP">FitBit</a></li>
-					<li class="xbox"><a href="http://live.xbox.com/en-US/profile/profile.aspx?GamerTag=FragMaster%20B">Xbox Live</a></li>
 					<li class="lastfm"><a href="http://www.last.fm/user/bartlewis">Last.fm</a></li>
 					<li class="flickr"><a href="http://www.flickr.com/photos/bartlewis">Flickr</a></li>
 					<li class="goodreads"><a href="http://www.goodreads.com/bartlewis">Goodreads</a></li>
@@ -434,7 +427,7 @@ else{
 		<footer role="contentinfo">
 			<div class="content">
 				<a href="#header">&#94; Top &#94;</a>
-				&#169;2013 Bart Lewis
+				&#169;2015 Bart Lewis
 			</div>
 		</footer>
 
