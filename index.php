@@ -167,6 +167,9 @@ else{
 
               <dt>Where</dt>
               <dd><a href="https://pegg.co/">pegg.co</a></dd>
+
+              <dt>Github</dt>
+              <dd><a href="http://bit.ly/1E899OC">http://bit.ly/1E899OC</a></dd>
             </dl>
           </div>
         </section>
@@ -196,6 +199,9 @@ else{
 						<dl>
 							<dt>When</dt>
 							<dd>2013</dd>
+
+              <dt>Github</dt>
+              <dd><a href="http://bit.ly/1fsD0Fi">http://bit.ly/1fsD0Fi</a></dd>
 						</dl>
 					</div>
 				</section>
@@ -250,6 +256,10 @@ else{
 
 							<dt>Where</dt>
 							<dd><a href="projects/misacwis-wbt/sco_1305/">projects/misacwis-wbt/sco_1305/</a></dd>
+
+              <dt>Github</dt>
+              <dd><a href="http://bit.ly/1JtLaeP">http://bit.ly/1fsD0Fi</a></dd>
+
 						</dl>
 					</div>
 				</section>
@@ -340,6 +350,9 @@ else{
 						<dl>
 							<dt>When</dt>
 							<dd>2007</dd>
+
+              <dt>Github</dt>
+              <dd><a href="http://bit.ly/1htoKOo">http://bit.ly/1htoKOo</a></dd>
 						</dl>
 					</div>
 				</section>
